@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,211 +6,241 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
-    * {
-        box-sizing: border-box;
-    }
 
-    html, body {
-        margin: 0;
-        padding: 0;
-        width: 100%;
-        min-height: 100%;
-    }
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Patrick+Hand&display=swap');
 
-    body {
-        font-family: Georgia, "Times New Roman", serif;
-        background:
-            linear-gradient(
-                135deg,
-                #dceff0 0%,
-                #d8eaf3 45%,
-                #dcecdf 100%
-            );
-        color: #315c63;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        overflow: hidden;
-    }
+* {
+  box-sizing: border-box;
+}
 
-    /* The whole little scene */
+body {
+  margin: 0;
+  overflow: hidden;
+  background: linear-gradient(
+    135deg,
+    #dceff0,
+    #d8eaf3,
+    #dcecdf
+  );
+  color: #315c63;
+}
 
-    .scene {
-        position: relative;
-        width: 100%;
-        min-height: 190px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        overflow: hidden;
-    }
+.scene {
+  position: relative;
+  width: 100%;
+  min-height: 210px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
 
-    /* Glassy message */
+/* MESSAGE */
 
-    .message {
-        position: relative;
-        z-index: 3;
+.message {
+  position: relative;
+  z-index: 2;
 
-        width: min(82%, 720px);
-        min-height: 125px;
+  width: min(82%, 720px);
+  min-height: 135px;
 
-        padding: 30px 50px;
+  padding: 28px 38px;
 
-        display: flex;
-        align-items: center;
-        justify-content: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
-        text-align: center;
+  text-align: center;
 
-        background:
-            linear-gradient(
-                135deg,
-                rgba(255,255,255,0.58),
-                rgba(235,250,248,0.38)
-            );
+  background: rgba(255,255,255,0.35);
+  border: 1px solid rgba(255,255,255,0.65);
+  border-radius: 28px;
 
-        border: 1px solid rgba(255,255,255,0.7);
+  box-shadow:
+    0 10px 30px rgba(71, 119, 126, 0.12),
+    inset 0 1px 0 rgba(255,255,255,0.6);
 
-        border-radius: 18px;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
 
-        box-shadow:
-            0 10px 35px rgba(65, 115, 120, 0.12),
-            inset 0 1px 2px rgba(255,255,255,0.8);
+  animation: bob 5s ease-in-out infinite;
+}
 
-        backdrop-filter: blur(8px);
+/* little suggestion of a bottle neck */
 
-        animation: appear 0.8s ease-out;
-    }
+.message::before {
+  content: "";
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  transform: translateX(-50%);
 
-    #quote {
-        font-size: clamp(17px, 2.15vw, 25px);
-        line-height: 1.55;
-        font-style: italic;
-        letter-spacing: 0.01em;
-        max-width: 650px;
-    }
+  width: 34px;
+  height: 18px;
 
-    /* Little bottle-neck suggestion */
+  border: 1px solid rgba(255,255,255,0.55);
+  border-bottom: none;
+  border-radius: 10px 10px 0 0;
 
-    .message::before {
-        content: "";
-        position: absolute;
+  background: rgba(255,255,255,0.18);
+}
 
-        width: 32px;
-        height: 13px;
+#quote {
+  margin: 0;
 
-        top: -7px;
-        left: 50%;
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: clamp(22px, 3vw, 31px);
+  line-height: 1.35;
+  font-weight: 500;
+  font-style: italic;
+  letter-spacing: 0.01em;
 
-        transform: translateX(-50%);
+  animation: quoteAppear 1.2s ease-out;
+}
 
-        background: rgba(240,255,252,0.62);
+/* BUBBLES */
 
-        border: 1px solid rgba(255,255,255,0.7);
+.bubble {
+  position: absolute;
+  bottom: -20px;
 
-        border-bottom: none;
+  border: 1px solid rgba(255,255,255,0.65);
+  border-radius: 50%;
 
-        border-radius: 8px 8px 0 0;
-    }
+  background: rgba(255,255,255,0.18);
 
-    /* Bubbles */
+  z-index: 1;
 
-    .bubble {
-        position: absolute;
-        border-radius: 50%;
-        border: 1px solid rgba(255,255,255,0.55);
-        background: rgba(255,255,255,0.18);
-        animation: float 7s ease-in-out infinite;
-    }
+  animation: rise linear infinite;
+}
 
-    .bubble-one {
-        width: 13px;
-        height: 13px;
-        left: 11%;
-        bottom: 18px;
-        animation-delay: -2s;
-    }
+.bubble:nth-child(1) {
+  width: 9px;
+  height: 9px;
+  left: 12%;
+  animation-duration: 7s;
+  animation-delay: -2s;
+}
 
-    .bubble-two {
-        width: 8px;
-        height: 8px;
-        left: 22%;
-        top: 22px;
-        animation-delay: -4s;
-    }
+.bubble:nth-child(2) {
+  width: 14px;
+  height: 14px;
+  left: 27%;
+  animation-duration: 10s;
+  animation-delay: -6s;
+}
 
-    .bubble-three {
-        width: 17px;
-        height: 17px;
-        right: 14%;
-        bottom: 25px;
-        animation-delay: -1s;
-    }
+.bubble:nth-child(3) {
+  width: 7px;
+  height: 7px;
+  left: 67%;
+  animation-duration: 8s;
+  animation-delay: -4s;
+}
 
-    .bubble-four {
-        width: 7px;
-        height: 7px;
-        right: 25%;
-        top: 30px;
-        animation-delay: -5s;
-    }
+.bubble:nth-child(4) {
+  width: 12px;
+  height: 12px;
+  left: 81%;
+  animation-duration: 11s;
+  animation-delay: -7s;
+}
 
-    .bubble-five {
-        width: 10px;
-        height: 10px;
-        left: 6%;
-        top: 65px;
-        animation-delay: -3s;
-    }
+.bubble:nth-child(5) {
+  width: 5px;
+  height: 5px;
+  left: 48%;
+  animation-duration: 6s;
+  animation-delay: -3s;
+}
 
-    /* Very subtle waves */
+.bubble:nth-child(6) {
+  width: 8px;
+  height: 8px;
+  left: 90%;
+  animation-duration: 9s;
+  animation-delay: -5s;
+}
 
-    .wave {
-        position: absolute;
-        width: 120%;
-        height: 45px;
+/* WAVES */
 
-        border-top: 1px solid rgba(88,145,148,0.12);
-        border-radius: 50%;
+.wave {
+  position: absolute;
+  left: -10%;
+  width: 120%;
+  height: 35px;
 
-        left: -10%;
-    }
+  border-top: 1px solid rgba(83, 145, 151, 0.13);
+  border-radius: 50%;
 
-    .wave-one {
-        bottom: 10px;
-        transform: rotate(-2deg);
-    }
+  z-index: 0;
+}
 
-    .wave-two {
-        bottom: -4px;
-        transform: rotate(2deg);
-    }
+.wave.one {
+  bottom: 15px;
+  animation: waveMove 8s ease-in-out infinite;
+}
 
-    /* Gentle floating animation */
+.wave.two {
+  bottom: 4px;
+  opacity: 0.55;
+  animation: waveMove 11s ease-in-out infinite reverse;
+}
 
-    @keyframes float {
-        0%, 100% {
-            transform: translateY(0);
-            opacity: 0.45;
-        }
+/* ANIMATIONS */
 
-        50% {
-            transform: translateY(-18px);
-            opacity: 0.8;
-        }
-    }
+@keyframes quoteAppear {
+  0% {
+    opacity: 0;
+    transform: translateY(12px) rotate(-1deg);
+  }
 
-    @keyframes appear {
-        from {
-            opacity: 0;
-            transform: translateY(7px);
-        }
+  100% {
+    opacity: 1;
+    transform: translateY(0) rotate(0);
+  }
+}
 
-        to {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    }
+@keyframes bob {
+  0%, 100% {
+    transform: translateY(0) rotate(0deg);
+  }
+
+  50% {
+    transform: translateY(-5px) rotate(0.25deg);
+  }
+}
+
+@keyframes rise {
+  0% {
+    transform: translateY(0) translateX(0);
+    opacity: 0;
+  }
+
+  10% {
+    opacity: 0.65;
+  }
+
+  50% {
+    transform: translateY(-100px) translateX(12px);
+  }
+
+  100% {
+    transform: translateY(-220px) translateX(-10px);
+    opacity: 0;
+  }
+}
+
+@keyframes waveMove {
+  0%, 100% {
+    transform: translateX(0) scaleY(1);
+  }
+
+  50% {
+    transform: translateX(25px) scaleY(1.15);
+  }
+}
+
 </style>
 </head>
 
@@ -217,98 +248,63 @@
 
 <div class="scene">
 
-    <div class="wave wave-one"></div>
-    <div class="wave wave-two"></div>
+  <div class="message">
+    <p id="quote"></p>
+  </div>
 
-    <div class="bubble bubble-one"></div>
-    <div class="bubble bubble-two"></div>
-    <div class="bubble bubble-three"></div>
-    <div class="bubble bubble-four"></div>
-    <div class="bubble bubble-five"></div>
+  <div class="bubble"></div>
+  <div class="bubble"></div>
+  <div class="bubble"></div>
+  <div class="bubble"></div>
+  <div class="bubble"></div>
+  <div class="bubble"></div>
 
-    <div class="message">
-        <div id="quote"></div>
-    </div>
+  <div class="wave one"></div>
+  <div class="wave two"></div>
 
 </div>
 
 <script>
 
 const quotes = [
-
-    "everything I've ever let go of has claw marks on it",
-
-    "true love ought to have enough salt in it to float you. you shouldn't have to be underwater",
-
-    "it takes strength to be gentle and kind",
-
-    "do not go gentle into that good night",
-
-    "you cannot kill me in a way that matters",
-
-    "it is better to show up than to give up",
-
-    "all of my life, a voice has whispered softly in my ear: \"live, live, live.\" it was death",
-
-    "everything sings",
-
-    "to love and be loved in return",
-
-    "cathedrals are everywhere for those with eyes to see",
-
-    "there is no moral. The wolf eats you one day, and, until it does, the forest is beautiful",
-
-    "you do not have to be good",
-
-    "no one is coming to save you. get up.",
-
-    "death wants me to live",
-
-    "the person in love always wins",
-
-    "everything means what you think it does",
-
-    "if it's meant to be, it will be",
-
-    "i am not afraid to walk this world alone",
-
-    "do it alone",
-
-    "it seems unforgiving when a good thing ends, but you and I will always be back then",
-
-    "when the power of love beats the love of power, the world will know peace",
-
-    "everything will work out because i am insane",
-
-    "sometimes life is scary and dark. that is why we must find the light",
-
-    "if you get everything you want the minute you want it, whats the point of living?",
-
-    "as long as i know the shape of my soul, i'll be alright",
-
-    "and now that you don't have to be perfect, you can be good.",
-
-    "nothing behind me, everything ahead of me, as is ever so on the road.",
-
-    "\"hope\" is the thing with feathers that perches in the soul.",
-
-    "there is a crack in everything. that's how the light gets in."
-
+  "everything I've ever let go of has claw marks on it",
+  "true love ought to have enough salt in it to float you. you shouldn't have to be underwater",
+  "it takes strength to be gentle and kind",
+  "do not go gentle into that good night",
+  "you cannot kill me in a way that matters",
+  "it is better to show up than to give up",
+  "all of my life, a voice has whispered softly in my ear: \"live, live, live.\" it was death",
+  "everything sings",
+  "to love and be loved in return",
+  "cathedrals are everywhere for those with eyes to see",
+  "there is no moral. The wolf eats you one day, and, until it does, the forest is beautiful",
+  "you do not have to be good",
+  "no one is coming to save you. get up.",
+  "death wants me to live",
+  "the person in love always wins",
+  "everything means what you think it does",
+  "if it's meant to be, it will be",
+  "i am not afraid to walk this world alone",
+  "do it alone",
+  "it seems unforgiving when a good thing ends, but you and I will always be back then",
+  "when the power of love beats the love of power, the world will know peace",
+  "everything will work out because i am insane",
+  "sometimes life is scary and dark. that is why we must find the light",
+  "if you get everything you want the minute you want it, whats the point of living?",
+  "as long as i know the shape of my soul, i'll be alright",
+  "and now that you don't have to be perfect, you can be good.",
+  "nothing behind me, everything ahead of me, as is ever so on the road.",
+  "\"hope\" is the thing with feathers that perches in the soul.",
+  "there is a crack in everything. that's how the light gets in.",
+   "life is unfair. kill yourself or get over it."
 ];
 
+const quote = quotes[Math.floor(Math.random() * quotes.length)];
 
-/* Choose one quote whenever the page loads */
-
-const randomQuote =
-    quotes[Math.floor(Math.random() * quotes.length)];
-
-
-/* Display it */
-
-document.getElementById("quote").textContent =
-    "“" + randomQuote + "”";
+document.getElementById("quote").textContent = "“" + quote + "”";
 
 </script>
 
 </body>
 </html>
+```
