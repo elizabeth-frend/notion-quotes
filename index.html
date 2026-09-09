@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+    * {
+        box-sizing: border-box;
+    }
+
+    html, body {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        min-height: 100%;
+    }
+
+    body {
+        font-family: Georgia, "Times New Roman", serif;
+        background:
+            linear-gradient(
+                135deg,
+                #e8f3f1 0%,
+                #dcecf3 48%,
+                #e8f0df 100%
+            );
+        color: #31585d;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+    }
+
+    .card {
+        position: relative;
+        width: 100%;
+        min-height: 155px;
+        padding: 35px 55px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        overflow: hidden;
+    }
+
+    /* soft clouds */
+
+    .cloud {
+        position: absolute;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.45);
+        filter: blur(1px);
+    }
+
+    .cloud-one {
+        width: 180px;
+        height: 55px;
+        left: -45px;
+        top: 8px;
+    }
+
+    .cloud-two {
+        width: 145px;
+        height: 45px;
+        right: -35px;
+        bottom: 8px;
+    }
+
+    /* tiny decorative details */
+
+    .sparkle {
+        position: absolute;
+        color: rgba(76, 126, 118, 0.32);
+        font-size: 22px;
+    }
+
+    .sparkle-one {
+        left: 25px;
+        bottom: 24px;
+    }
+
+    .sparkle-two {
+        right: 30px;
+        top: 20px;
+        transform: rotate(15deg);
+    }
+
+    /* quote */
+
+    #quote {
+        position: relative;
+        z-index: 2;
+        max-width: 800px;
+
+        font-size: clamp(17px, 2.2vw, 25px);
+        line-height: 1.55;
+        font-style: italic;
+        letter-spacing: 0.01em;
+
+        animation: appear 0.7s ease-out;
+    }
+
+    @keyframes appear {
+        from {
+            opacity: 0;
+            transform: translateY(5px);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+</style>
+</head>
+
+<body>
+
+<div class="card">
+
+    <div class="cloud cloud-one"></div>
+    <div class="cloud cloud-two"></div>
+
+    <div class="sparkle sparkle-one">⌁</div>
+    <div class="sparkle sparkle-two">✦</div>
+
+    <div id="quote"></div>
+
+</div>
+
+<script>
+
+const quotes = [
+
+    "everything I've ever let go of has claw marks on it",
+
+    "true love ought to have enough salt in it to float you. you shouldn't have to be underwater",
+
+    "it takes strength to be gentle and kind",
+
+    "do not go gentle into that good night",
+
+    "you cannot kill me in a way that matters",
+
+    "it is better to show up than to give up",
+
+    "all of my life, a voice has whispered softly in my ear: \"live, live, live.\" it was death",
+
+    "everything sings",
+
+    "to love and be loved in return",
+
+    "cathedrals are everywhere for those with eyes to see",
+
+    "there is no moral. The wolf eats you one day, and, until it does, the forest is beautiful",
+
+    "you do not have to be good",
+
+    "no one is coming to save you. get up.",
+
+    "death wants me to live",
+
+    "the person in love always wins",
+
+    "everything means what you think it does",
+
+    "if it's meant to be, it will be",
+
+    "i am not afraid to walk this world alone",
+
+    "do it alone",
+
+    "it seems unforgiving when a good thing ends, but you and I will always be back then",
+
+    "when the power of love beats the love of power, the world will know peace",
+
+    "everything will work out because i am insane",
+
+    "sometimes life is scary and dark. that is why we must find the light",
+
+    "if you get everything you want the minute you want it, whats the point of living?",
+
+    "as long as i know the shape of my soul, i'll be alright",
+
+    "and now that you don't have to be perfect, you can be good.",
+
+    "nothing behind me, everything ahead of me, as is ever so on the road.",
+
+    "\"hope\" is the thing with feathers that perches in the soul.",
+
+    "there is a crack in everything. that's how the light gets in."
+
+];
+
+/* Pick a new quote every time the widget loads */
+
+const randomQuote =
+    quotes[Math.floor(Math.random() * quotes.length)];
+
+document.getElementById("quote").textContent =
+    "“" + randomQuote + "”";
+
+</script>
+
+</body>
+</html>
